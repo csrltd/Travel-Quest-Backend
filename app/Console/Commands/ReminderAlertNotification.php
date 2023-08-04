@@ -54,7 +54,7 @@ class ReminderAlertNotification extends Command
                     if ($scheduler->user) {
                         if ($scheduler->user->userDetails) {
                             $formated_time = floor($remaining_times / 60).'hours and '.($remaining_times -   floor($remaining_times / 60) * 60)." minutes";
-                            $sent_message="Hi ".$scheduler->user->userDetails->lastName.",</br>".$scheduler->alertTemplate->title." </br> Your departure time is  ".$scheduler->departure_time."</br>"."Remaining Time is ".$formated_time."</br>".$scheduler->alertTemplate->body;
+                            $sent_message="Hi ".$scheduler->user->userDetails->lastName.",\r\n".$scheduler->alertTemplate->title." \r\n Your departure time is  ".$scheduler->departure_time."\r\n"."Remaining Time is ".$formated_time."\r\n".$scheduler->alertTemplate->body;
                             
                             if ($remaining_times == $totalDuration2) {
                                 $sms = new TransferSms();
