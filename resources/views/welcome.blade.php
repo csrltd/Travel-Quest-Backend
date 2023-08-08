@@ -409,7 +409,13 @@
 
     <center>
         <h1> API under development !!! Take it easy bro </h1>
-        
+        <?php
+        // $schedulers = \App\Models\FlightSchedule::with(['callerType', 'alertTemplate', 'userDetails'])
+        //     ->where('status', '=', 'active')
+        //     ->get();
+
+        //     echo $schedulers;
+?>
         <br>
     </center>
 </body>

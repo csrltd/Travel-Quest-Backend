@@ -31,7 +31,7 @@ class ReminderAlertNotification extends Command
      */
     public function handle()
     {
-    $schedulers = FlightSchedule::with(['callerType', 'alertTemplate', 'user' => with(['userDetails'])])
+    $schedulers = FlightSchedule::with(['callerType', 'alertTemplate', 'userDetails'])
             ->where('status', '=', 'active')
             ->get();
         
@@ -51,14 +51,14 @@ class ReminderAlertNotification extends Command
                     $totalDuration2 = $endTime->diffInMinutes($startTime);
                     $remaining_times = ($scheduler->callerType->name - $scheduler->counter) * 10;
                     
-                    if ($scheduler->user) {
-                        if ($scheduler->user->userDetails) {
+                    if ($scheduler->userDetails) {
+                        if ($scheduler->userDetails) {
                             $formated_time = floor($remaining_times / 60).'hours and '.($remaining_times -   floor($remaining_times / 60) * 60)." minutes";
-                            $sent_message="Hi ".$scheduler->user->userDetails->lastName.",\r\n".$scheduler->alertTemplate->title." \r\n Your departure time is  ".$scheduler->departure_time."\r\n"."Remaining Time is ".$formated_time."\r\n".$scheduler->alertTemplate->body;
+                            $sent_message="Hi ".$scheduler->userDetails->lastName.",\r\n".$scheduler->alertTemplate->title." \r\n Your departure time is  ".$scheduler->departure_time."\r\n"."Remaining Time is ".$formated_time."\r\n".$scheduler->alertTemplate->body;
                             
                             if ($remaining_times == $totalDuration2) {
                                 $sms = new TransferSms();
-                                        $sms->sendSMS($scheduler->user->userDetails->mobileTelephone, $sent_message);
+                                        $sms->sendSMS($scheduler->userDetails->mobileTelephone, $sent_message);
         
                                 $flightSchedule = FlightSchedule::find($scheduler->id);
                                 $flightSchedule->counter = $scheduler->counter + 1;
@@ -66,7 +66,7 @@ class ReminderAlertNotification extends Command
                             } elseif ($totalDuration2 == 0) {
 
                                 $sms = new TransferSms();
-                                $sms->sendSMS($scheduler->user->userDetails->mobileTelephone, $sent_message);
+                                $sms->sendSMS($scheduler->userDetails->mobileTelephone, $sent_message);
         
                                 $flightSchedule = FlightSchedule::find($scheduler->id);
                                 $flightSchedule->status = 'completed';
