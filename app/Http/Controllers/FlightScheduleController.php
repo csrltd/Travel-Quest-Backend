@@ -23,7 +23,7 @@ class FlightScheduleController extends Controller
             'alert_template_id' => 'nullable|exists:alert_templates,id',
             'ticket_number' => 'nullable',
             'counter' => 'nullable',
-            'userdetails_id' => 'nullable|exists:user_details,id',
+            'user_details_id' => 'nullable|exists:user_details,id',
         ]);
 
         if ($validator->fails()) {
@@ -50,7 +50,7 @@ class FlightScheduleController extends Controller
             'alert_template_id' => 'nullable|exists:alert_templates,id',
             'ticket_number' => 'nullable',
             'counter' => 'nullable',
-            'userdetails_id' => 'nullable|exists:user_details,id',
+            'user_details_id' => 'nullable|exists:user_details,id',
         ]);
 
         if ($validator->fails()) {
