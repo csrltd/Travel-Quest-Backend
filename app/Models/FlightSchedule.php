@@ -25,6 +25,7 @@ class FlightSchedule extends Model
         'ticket_number',
         'counter',
         'userdetails_id',
+        'user_details_id',
     ];
 
     public function callerType()

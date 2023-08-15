@@ -49,7 +49,7 @@ class ReminderAlertNotification extends Command
 
                     // $totalDuration = $endTime->diffForHumans($startTime);
                     $totalDuration2 = $endTime->diffInMinutes($startTime);
-                    $remaining_times = ($scheduler->callerType->name - $scheduler->counter) * 10;
+                    $remaining_times = ($scheduler->callerType->name - $scheduler->counter) * 60;
                     
                     if ($scheduler->userDetails) {
                         if ($scheduler->userDetails) {

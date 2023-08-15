@@ -29,8 +29,9 @@ class FlightScheduleController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
-        $flightSchedule = FlightSchedule::create($request->all());
+        // $request->user_details_id = $request->userdetails_id;
+        // $flightSchedule = FlightSchedule::create($request->all());
+        $flightSchedule = FlightSchedule::create(array_merge($request->all(), ['user_details_id' => $request->userdetails_id]));
 
         return response()->json(['message' => 'Flight schedule created successfully', 'data' => $flightSchedule]);
     }
@@ -62,8 +63,9 @@ class FlightScheduleController extends Controller
         if (!$flightSchedule) {
             return response()->json(['message' => 'Flight schedule not found'], 404);
         }
-
-        $flightSchedule->update($request->all());
+        // $request->user_details_id = $request->userdetails_id;
+        // $flightSchedule->update($request->all());
+        $flightSchedule->update(array_merge($request->all(), ['user_details_id' => $request->userdetails_id]));
 
         return response()->json(['message' => 'Flight schedule updated successfully', 'data' => $flightSchedule]);
     }
