@@ -8,6 +8,8 @@ use App\Http\Controllers\ConstantsController;
 use App\Http\Controllers\AlertTemplateController;
 use App\Http\Controllers\FlightScheduleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotificationController;
+
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth',], function($router) {
     Route::post('/login', [JWTController::class, 'login']);
@@ -70,6 +72,19 @@ Route::group(['middleware' => 'api', 'prefix' => 'flight-schedule'], function ($
     Route::delete('/delete/{id}', [FlightScheduleController::class, 'delete']);
     Route::get('/all', [FlightScheduleController::class, 'getAll']);
 });
+
+
+Route::group(['middleware' => 'api', 'prefix' => 'notification'], function ($router) {
+  
+    // Routes for NotificationController
+    Route::post('/send', [NotificationController::class, 'push']);
+    Route::get('/list', [NotificationController::class, 'index']);
+    Route::get('/show/{id}', [NotificationController::class, 'show']);
+    Route::put('/edit/{notification}', [NotificationController::class, 'update']);
+    Route::delete('/delete/{notification}', [NotificationController::class, 'destroy']);
+});
+
+
 
 
 

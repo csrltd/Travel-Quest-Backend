@@ -66,8 +66,8 @@ class UserController extends Controller
 
         $message = "Hello " . $request['firstName'] . " Your Account has been created successfully, here is your login credentials email: " . $request->input('email') . "  Password: " . $request->input('password');
 
-        $sms = new TransferSms();
-        $sms->sendSMS($request['telephone'], $message);
+        // $sms = new TransferSms();
+        // $sms->sendSMS($request['telephone'], $message);
 
         // Return a response
         return response()->json([
