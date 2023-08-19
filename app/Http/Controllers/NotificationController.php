@@ -9,7 +9,6 @@ use App\TransferSms;
 
 class NotificationController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['']]);
